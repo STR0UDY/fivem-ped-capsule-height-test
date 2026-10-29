@@ -1,6 +1,7 @@
 # fivem-ped-capsule-height-test
 
-A small client resource for testing `SET_PED_CAPSULE_HEIGHT_OVERRIDE`, a native proposed for FiveM that lowers a
+A small client resource for testing `SET_PED_CAPSULE_HEIGHT_OVERRIDE`, a native proposed in
+[citizenfx/fivem#4316](https://github.com/citizenfx/fivem/pull/4316) that lowers a
 ped's mover capsule (its collision with the world), so a crouching ped can move under things like a trailer.
 
 It needs a FiveM client built from the PR branch. On official clients, the native doesn't exist yet.
