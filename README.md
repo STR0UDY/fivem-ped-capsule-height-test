@@ -1,6 +1,6 @@
 # fivem-ped-capsule-height-test
 
-A small client resource for testing `SET_PED_CAPSULE_HEIGHT_OVERRIDE`, a native proposed in
+A small client resource for testing `SET_PED_CAPSULE_HEIGHT_OVERRIDE` and `CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE`, natives proposed in
 [citizenfx/fivem#4316](https://github.com/citizenfx/fivem/pull/4316) that lowers a
 ped's mover capsule (its collision with the world), so a crouching ped can move under things like a trailer.
 
@@ -24,11 +24,11 @@ overridden capsule (your own, and other players' when shared with `capsync`).
 | Command | Does |
 |---|---|
 | `cap <height>` | Override the top of the capsule, in meters above the ped's position (the default is about `0.82`) |
-| `cap 0` | Remove the override |
+| `cap 0` | Remove the override (`CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE`) |
 | `crouchtest` | Toggle a crouch walk (`move_ped_crouched`) together with an override of `0.25`, the game's own crouched height |
 | `capsync` | Toggle sharing your override with other players through your player state bag, so their clients apply it to your ped too |
 
-The native is called through `Citizen.InvokeNative(0x62A2D8E3, ...)`, since dev builds don't regenerate the Lua
+The natives are called through `Citizen.InvokeNative` (`0x62A2D8E3` and `0x85A6FDA3`), since dev builds don't regenerate the Lua
 native bindings.
 
 ## Test checklist

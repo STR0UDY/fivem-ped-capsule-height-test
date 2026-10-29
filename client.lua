@@ -1,12 +1,13 @@
 -- Test commands for SET_PED_CAPSULE_HEIGHT_OVERRIDE. Needs a FiveM client built from the PR branch.
 --
 --   cap <height>   override the capsule top (meters above the ped's position); default is ~0.82
---   cap 0          remove the override
+--   cap 0          remove the override (CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE)
 --   crouchtest     toggle a crouch walk + capsule height 0.25 (the game's own crouched height)
 --   capsync        toggle sharing your override with other players (through your player state bag),
 --                  so their clients apply it to your ped too
 
 local SET_PED_CAPSULE_HEIGHT_OVERRIDE = 0x62A2D8E3
+local CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE = 0x85A6FDA3
 
 local current = nil
 local crouched = false
@@ -17,7 +18,10 @@ local lastMessage = ''
 local remoteApplied = {}
 
 local function setPedCapsuleHeight(ped, height)
-    return pcall(Citizen.InvokeNative, SET_PED_CAPSULE_HEIGHT_OVERRIDE, ped, height + 0.0)
+    if height > 0 then
+        return pcall(Citizen.InvokeNative, SET_PED_CAPSULE_HEIGHT_OVERRIDE, ped, height + 0.0)
+    end
+    return pcall(Citizen.InvokeNative, CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE, ped)
 end
 
 local function publish()
