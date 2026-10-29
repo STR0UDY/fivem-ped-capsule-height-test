@@ -16,8 +16,8 @@ It needs a FiveM client built from the PR branch. On official clients, the nativ
 2. Put this folder in your server's `resources` and run `ensure fivem-ped-capsule-height-test` (or add it to your `server.cfg`).
 3. Connect with the dev client, open the **F8** console and run the commands below.
 
-The current override and the last result are shown in an on-screen box, and a red marker shows the top of the
-overridden capsule.
+The current override and the last result are shown in an on-screen box, and a red marker shows the top of each
+overridden capsule (your own, and other players' when shared with `capsync`).
 
 ## Commands
 
@@ -26,6 +26,7 @@ overridden capsule.
 | `cap <height>` | Override the top of the capsule, in meters above the ped's position (the default is about `0.82`) |
 | `cap 0` | Remove the override |
 | `crouchtest` | Toggle a crouch walk (`move_ped_crouched`) together with an override of `0.25`, the game's own crouched height |
+| `capsync` | Toggle sharing your override with other players through your player state bag, so their clients apply it to your ped too |
 
 The native is called through `Citizen.InvokeNative(0x62A2D8E3, ...)`, since dev builds don't regenerate the Lua
 native bindings.
@@ -39,3 +40,5 @@ native bindings.
 | `crouchtest` again, away from the trailer | The ped stands up, and is blocked by the trailer again |
 | `cap 0.4`, `cap 1.2`, `cap 0` | The marker moves with the override, and collision follows it |
 | `crouchtest` under the trailer, `disconnect` and rejoin | The override is gone |
+| With a second client: `crouchtest` on client 1, then drop onto client 1 from client 2 | Client 2 lands on client 1's full-height capsule: the override isn't synchronized |
+| `capsync` and `crouchtest` on client 1, then drop onto it from client 2 again | Client 2 lands at client 1's crouched height |
