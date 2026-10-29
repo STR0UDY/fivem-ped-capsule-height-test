@@ -1,10 +1,10 @@
 # fivem-ped-capsule-height-test
 
 A small client resource for testing `SET_PED_CAPSULE_HEIGHT_OVERRIDE` and `CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE`, natives proposed in
-[citizenfx/fivem#4316](https://github.com/citizenfx/fivem/pull/4316) that lowers a
+[citizenfx/fivem#4316](https://github.com/citizenfx/fivem/pull/4316) that lower a
 ped's mover capsule (its collision with the world), so a crouching ped can move under things like a trailer.
 
-It needs a FiveM client built from the PR branch. On official clients, the native doesn't exist yet.
+It needs a FiveM client built from the PR branch. On official clients, the natives don't exist yet.
 
 [![Walking under a fuel tanker while crouched](media/demo.jpg)](media/demo.mp4)
 
