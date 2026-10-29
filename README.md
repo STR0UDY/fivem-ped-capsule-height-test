@@ -26,10 +26,16 @@ overridden capsule (your own, and other players' when shared with `capsync`).
 | `cap <height>` | Override the top of the capsule, in meters above the ped's position (the default is about `0.82`) |
 | `cap 0` | Remove the override (`CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE`) |
 | `crouchtest` | Toggle a crouch walk (`move_ped_crouched`) together with an override of `0.25`, the game's own crouched height |
-| `capsync` | Toggle sharing your override with other players through your player state bag, so their clients apply it to your ped too |
+| `capsync` | Toggle sharing your override through your player state bag, so other clients apply it to your ped. Only needed on servers that don't sync the override yet (see below) |
 
 The natives are called through `Citizen.InvokeNative` (`0x62A2D8E3` and `0x85A6FDA3`), since dev builds don't regenerate the Lua
 native bindings.
+
+## Syncing
+
+The override is synced to other players along with the ped, on servers that announce net version 6 (servers built
+from the PR). On other servers it only applies locally, and `capsync` shows how to share it through a state bag
+instead.
 
 ## Test checklist
 
@@ -40,5 +46,5 @@ native bindings.
 | `crouchtest` again, away from the trailer | The ped stands up, and is blocked by the trailer again |
 | `cap 0.4`, `cap 1.2`, `cap 0` | The marker moves with the override, and collision follows it |
 | `crouchtest` under the trailer, `disconnect` and rejoin | The override is gone |
-| With a second client: `crouchtest` on client 1, then drop onto client 1 from client 2 | Client 2 lands on client 1's full-height capsule: the override isn't synchronized |
-| `capsync` and `crouchtest` on client 1, then drop onto it from client 2 again | Client 2 lands at client 1's crouched height |
+| With a second client, on a server built from the PR: `crouchtest` on client 1, then drop onto client 1 from client 2 | Client 2 lands at client 1's crouched height: the override is synced with the ped |
+| `crouchtest` again on client 1 | Client 2 is back on client 1's full-height capsule |
