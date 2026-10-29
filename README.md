@@ -16,8 +16,8 @@ It needs a FiveM client built from the PR branch. On official clients, the nativ
 2. Put this folder in your server's `resources` and run `ensure fivem-ped-capsule-height-test` (or add it to your `server.cfg`).
 3. Connect with the dev client, open the **F8** console and run the commands below.
 
-The current override and the last result are shown in an on-screen box, and a red marker shows the top of each
-overridden capsule (your own, and other players' when shared with `capsync`).
+The current override and the last result are shown in an on-screen box, and a red marker shows the top of your
+overridden capsule.
 
 ## Commands
 
@@ -26,7 +26,6 @@ overridden capsule (your own, and other players' when shared with `capsync`).
 | `cap <height>` | Override the top of the capsule, in meters above the ped's position (the default is about `0.82`) |
 | `cap 0` | Remove the override (`CLEAR_PED_CAPSULE_HEIGHT_OVERRIDE`) |
 | `crouchtest` | Toggle a crouch walk (`move_ped_crouched`) together with an override of `0.25`, the game's own crouched height |
-| `capsync` | Toggle sharing your override through your player state bag, so other clients apply it to your ped. Only needed on servers that don't sync the override yet (see below) |
 
 The natives are called through `Citizen.InvokeNative` (`0x62A2D8E3` and `0x85A6FDA3`), since dev builds don't regenerate the Lua
 native bindings.
@@ -34,8 +33,7 @@ native bindings.
 ## Syncing
 
 The override is synced to other players along with the ped, on servers that announce net version 6 (servers built
-from the PR). On other servers it only applies locally, and `capsync` shows how to share it through a state bag
-instead.
+from the PR). On other servers it only applies locally.
 
 ## Test checklist
 
