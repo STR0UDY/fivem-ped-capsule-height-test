@@ -35,6 +35,10 @@ native bindings.
 The override is synced to other players along with the ped, on servers that announce net version 6 (servers built
 from the PR). On other servers it only applies locally.
 
+[![Another player crouching under a fuel tanker, seen from a second client](media/sync-demo.jpg)](media/sync-demo.mp4)
+
+*Seen from a second client: the other player crouches under the fuel tanker, then stands back up ([video](media/sync-demo.mp4)).*
+
 ## Test checklist
 
 | Step | Expected |
